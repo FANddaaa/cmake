@@ -5,7 +5,8 @@ workdir=/usr/local/${BINARY_FILE} # 程序目录
 noarch_dir=${workdir}/noarch
 
 rpm_post_install(){
-  tar xzvf ${noarch_dir}/noarch_bin.tar.gz -C ${noarch_dir}/
+  echo "RPM_POST_INSTALL start..."
+  tar xzvf ${workdir}/noarch_bin.tar.gz -C ${workdir}/
   hw_arch=$(uname -m)
   bin_source=${noarch_dir}/${BINARY_FILE}-${hw_arch}
   bin_target=/usr/local/bin/${BINARY_FILE}

@@ -17,7 +17,7 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E make_directory noarch
     COMMAND GOARCH=amd64 go build -o noarch/${BINARY_FILE}-x86_64 ${CMAKE_SOURCE_DIR}/${MAIN_GO_PATH}
     COMMAND GOARCH=arm64 go build -o noarch/${BINARY_FILE}-aarch64 ${CMAKE_SOURCE_DIR}/${MAIN_GO_PATH}
-    COMMAND ${CMAKE_COMMAND} -E tar czvf noarch/noarch_bin.tar.gz noarch/${BINARY_FILE}-x86_64 noarch/${BINARY_FILE}-aarch64
+    COMMAND ${CMAKE_COMMAND} -E tar czvf noarch/noarch_bin.tar.gz noarch
 
     # WORKING_DIRECTORY ${CMAKE_BINARY_DIR} # 等价于${CMAKE_SOURCE_DIR}/${BUILD_PATH}
     COMMENT "构建多架构二进制文件并打包"
@@ -30,7 +30,7 @@ add_custom_target(build
 ##### make install #####
 install(
     FILES _build/noarch/noarch_bin.tar.gz
-    DESTINATION ./noarch
+    DESTINATION .
 )
 install(
     DIRECTORY scripts
